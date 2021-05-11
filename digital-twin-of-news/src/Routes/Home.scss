@@ -1,0 +1,15 @@
+@import '../variables.scss';
+
+.calendar-holder {
+  position: absolute;
+  top: $headerHeight;
+  z-index: 400;
+
+  @media (max-width: $smaller) {
+    top: $headerHeightSmaller;
+  }
+
+  @media (max-width: $smallest) {
+    top: $headerHeightSmallest;
+  }
+}

@@ -1,0 +1,88 @@
+@import '../../variables.scss';
+
+.header {
+  width: calc(100% - #{$eventsContainerWidth});
+  height: $headerHeight;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: $fontColorWhite;
+  position: fixed;
+  z-index: 101;
+
+  .title {
+    font-family: Montserrat-Medium, sans-serif;
+    font-size: 24px;
+    padding: 20px;
+    text-shadow: 0 0 5px #183d4d;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: $medium) and (max-width: 825px) {
+      font-size: 28px;
+    }
+
+    .bold {
+      margin-right: 8px;
+      font-family: Montserrat-Bold, sans-serif;
+    }
+
+    .info-icon {
+      cursor: pointer;
+      font-size: 18px;
+      margin-left: 12px;
+    }
+  }
+
+  .list-globe-switch {
+    display: none;
+  }
+
+  @media (max-width: $medium) {
+    width: 100%;
+
+    .list-globe-switch {
+      float: right;
+      display: block;
+      padding: 5px 15px 4px 15px;
+      cursor: pointer;
+      font-size: 20px;
+      text-shadow: 0 0 5px #183d4d;
+    }
+  }
+
+  @media (max-width: $smaller) {
+    .title {
+      font-size: 22px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: $smallest) {
+    .title {
+      font-size: 18px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: $smaller) {
+  .header {
+    height: 90px;
+  }
+}
+
+@media (max-width: $smallest) {
+  .header {
+    height: 80px;
+  }
+}

@@ -1,0 +1,120 @@
+@import '../../variables.scss';
+
+.leaflet-container {
+  background-color: $mainBackgroundColor;
+  min-width: 280px;
+  height: 100vh;
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  @media (max-width: $medium) {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+  @media (max-width: $xlarge) {
+    height: -webkit-fill-available;
+  }
+
+  @media (max-width: $medium) {
+    width: 100%;
+
+    &.hidden {
+      display: none;
+    }
+
+    .leaflet-bottom {
+      position: fixed;
+    }
+  }
+
+  .leaflet-control-scale {
+    right: 5px;
+    margin: 0 0 2px 0;
+  }
+
+  .leaflet-control-attribution {
+    @media (max-width: $medium) {
+      font-size: 8px;
+    }
+  }
+
+  .collapse-map {
+    color: $fontColorWhite;
+    z-index: 500;
+    font-size: 30px;
+    text-align: center;
+    bottom: 0;
+    right: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 6px #373737;
+
+    @media (max-width: $medium) {
+      display: block;
+    }
+  }
+
+  .back-to-start {
+    color: $fontColorWhite;
+    z-index: 500;
+    font-size: 30px;
+    text-align: center;
+    right: calc(#{$eventsContainerWidth} + 3px);
+    bottom: 0;
+    padding: 3px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-shadow: $textShadow;
+
+    @media (max-width: $medium) {
+      right: 0;
+      bottom: 35px;
+      padding: 8px;
+    }
+  }
+
+  .switch-osm-layer {
+    color: $fontColorWhite;
+    border: solid 2px $fontColorWhite;
+    box-shadow: $boxShadow;
+    position: fixed;
+    z-index: 500;
+    width: 65px;
+    height: 65px;
+    text-align: center;
+    bottom: 20px;
+    left: 20px;
+    cursor: pointer;
+
+    @media (max-width: $medium) {
+      left: 5px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .title {
+      position: absolute;
+      bottom: 3px;
+      font-family: Montserrat-Medium, sans-serif;
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+      text-shadow: $textShadow;
+    }
+  }
+
+  .icon-wrap-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 500;
+  }
+}

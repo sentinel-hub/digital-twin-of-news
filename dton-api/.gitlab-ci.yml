@@ -1,0 +1,68 @@
+image: python:3.8.2
+
+stages:
+  - test
+  - deploy
+
+linting:
+  stage: test
+  image: python:3.8.2
+  script:
+    - pip install pipenv
+    # check the files for correct formatting:
+    - cd app/
+    - pipenv install --dev
+    - pipenv run black --check . || exit 1
+
+integration tests:
+  stage: test
+  image: python:3.8.2
+  services:
+    - postgres:9.6-alpine
+  variables:
+    TESTING_DB_HOST: postgres
+    POSTGRES_DB: test
+    POSTGRES_USER: test
+    POSTGRES_PASSWORD: test
+    POSTGRES_HOST_AUTH_METHOD: trust
+  script:
+    - pip install pipenv
+    - cd app/
+    - pipenv install --dev
+    - cd tests
+    - pipenv run pytest
+
+deploy-production:
+  stage: deploy
+  only:
+    variables:
+      - $CI_COMMIT_TAG =~ /^v[0-9]+[.][0-9]+[.][0-9]+([-]rc[.][a-z0-9_-]+)?$/
+  variables:
+    SAM_CLI_TELEMETRY: "0"
+    AWS_REGION: "eu-central-1"
+    S3_BUCKET_LAMBDA: "dtonapi-deployment"
+    LAMBDA_STACK_NAME: "dtonapi-stack-name"
+    ROOT_URL: "https://xsdkp2ud72.execute-api.eu-central-1.amazonaws.com/prod"
+  before_script:
+    # configure aws access credentials:
+    - mkdir -p ~/.aws
+    - echo -e "[default]\nregion=$AWS_REGION" > ~/.aws/config
+    - echo -e "[default]\naws_access_key_id=$PROD_AWS_ACCESS_KEY_ID\naws_secret_access_key=$PROD_AWS_SECRET_ACCESS_KEY" > ~/.aws/credentials
+    - pip install --upgrade pipenv aws-sam-cli
+  script:
+    # use sam to deploy to lambda:
+    - cd app/
+    - pipenv lock --requirements > requirements.txt
+    - cd ..
+    - sed -i "s/@@DB_HOST@@/$DB_HOST/g" template.yml
+    - sed -i "s/@@DB_NAME@@/$DB_NAME/g" template.yml
+    - sed -i "s/@@DB_USER@@/$DB_USER/g" template.yml
+    - sed -i "s/@@DB_PASS@@/$DB_PASS/g" template.yml
+    - sed -i "s/@@SECRET_API_KEY@@/$SECRET_API_KEY/g" template.yml
+    - sed -i "s/@@DTON_API_VERSION@@/$CI_COMMIT_TAG/g" template.yml
+    - sam validate
+    - sam build --debug
+    - sam package --s3-bucket $S3_BUCKET_LAMBDA --output-template-file out.yml --region $AWS_REGION
+    - sam deploy --template-file out.yml --stack-name $LAMBDA_STACK_NAME --region $AWS_REGION --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM
+    - curl -i -X POST "$ROOT_URL/migratedb"
+    - 'echo "Deployed to: $ROOT_URL"'

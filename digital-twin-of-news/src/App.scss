@@ -1,0 +1,86 @@
+@import 'variables.scss';
+
+html,
+body,
+#root {
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: $mainGradient;
+}
+
+.initial-loader {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: $fontColorWhite;
+
+  @media (max-width: $medium) {
+    height: unset;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  font-family: Montserrat-Regular, sans-serif;
+  color: $fontColor;
+  position: relative;
+  height: 100%;
+
+  div {
+    box-sizing: border-box;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - #{$headerHeight});
+  }
+}
+
+#nprogress .bar {
+  background: $mainColor;
+  height: 3px;
+}
+
+@font-face {
+  font-family: Montserrat-Regular;
+  src: url('./fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: Montserrat-Medium;
+  src: url('./fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: Montserrat-Light;
+  src: url('./fonts/Montserrat-Light.ttf');
+}
+
+@font-face {
+  font-family: Montserrat-ExtraBold;
+  src: url('./fonts/Montserrat-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: Montserrat-Bold;
+  src: url('./fonts/Montserrat-Bold.ttf');
+}
+
+body {
+  @media (max-width: $xlarge) {
+    overflow-y: hidden;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $urlColor;
+}

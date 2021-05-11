@@ -1,0 +1,14 @@
+@import '../../variables.scss';
+
+.loader {
+  height: 100px;
+  text-align: center;
+  margin-top: 50%;
+  font-size: 30px;
+  color: $mainColor;
+
+  & span {
+    position: relative;
+    top: 55%;
+  }
+}

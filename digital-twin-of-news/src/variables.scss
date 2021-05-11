@@ -1,0 +1,67 @@
+$headerHeight: 105px;
+$headerHeightSmaller: 90px;
+$headerHeightSmallest: 80px;
+$eventsContainerWidth: 350px;
+$paddingLeft: 20px;
+
+// Breakpoints
+$smallest: 360px;
+$smaller: 450px;
+$small: 576px;
+$medium: 770px;
+$large: 992px;
+$xlarge: 1200px;
+$xxlarge: 1440px;
+
+// Stacking order
+$stackHigh: 3;
+$stackMedium: 2;
+$stackLow: 1;
+
+// Colours
+$mainColor: #09234f;
+$mainColorDark: #031538;
+$mainColorLight: #061d4b;
+$mainBackgroundColor: rgb(255, 255, 255);
+$darkBackGroundColor: #000;
+$fontColorWhite: #fff;
+$fontColorDark: #2d323b;
+$fontColor: #5b5d5e;
+$urlColor: #1765d8;
+$disabledColor: #eaeaea;
+$disabledColorDark: #bdbdbd;
+
+// Shadows
+$boxShadow: 0 3px 6px 0 rgba($darkBackGroundColor, 0.16);
+$textShadow: 1px 1px 6px $fontColorDark;
+
+// Gradients
+$mainGradient: linear-gradient(to bottom, #041028, #09234f);
+$buttonGradient: linear-gradient(to bottom, $mainColorLight, $mainColorDark);
+
+// Event colours
+$wildfireColor: #ec1212;
+$icebergColor: #0ed2ec;
+$floodColor: #0f54e9;
+$volcanoColor: #ffa500;
+$droughtColor: #f3e309;
+$airPollutionColor: #87ceeb;
+
+// Event status colours
+$notConfirmed: grey;
+$confirmedBad: red;
+$probablyBad: rgba(255, 0, 0, 0.2);
+$probablyGood: rgba(0, 255, 0, 0.2);
+
+// export for JS use, webpack takes care of this
+/* stylelint-disable */
+:export {
+  wildfireColor: $wildfireColor;
+  icebergColor: $icebergColor;
+  floodColor: $floodColor;
+  volcanoColor: $volcanoColor;
+  droughtColor: $droughtColor;
+  airPollutionColor: $airPollutionColor;
+  medium: $medium;
+}
+/* stylelint-enable */

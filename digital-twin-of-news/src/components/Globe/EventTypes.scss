@@ -1,0 +1,75 @@
+@import '../../variables.scss';
+
+.event-types {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (max-width: 1700px) {
+    max-width: 500px;
+  }
+
+  .event-type-no-background {
+    position: relative;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    width: 135px;
+    padding: 10px 5px;
+  }
+
+  @media (min-width: $medium) {
+    bottom: 70px;
+  }
+
+  .event-type {
+    background: white;
+    box-shadow: $boxShadow;
+    position: relative;
+    margin: 5px;
+    transition: 0.15s linear background;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 138px;
+
+    &-name {
+      font-size: 15px;
+      text-transform: capitalize;
+      font-weight: bold;
+      color: $fontColorDark;
+    }
+
+    @media screen and (max-width: 768px) {
+      .event-type-name {
+        font-size: 14px;
+      }
+    }
+
+    &-dot {
+      display: inline-block;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      margin-left: 4px;
+      border: 1px solid white;
+      box-shadow: 0 0 4px #2d323b;
+      flex-shrink: 0;
+    }
+
+    &-disabled {
+      background: $disabledColorDark;
+      transition: 0.15s background linear;
+    }
+  }
+}

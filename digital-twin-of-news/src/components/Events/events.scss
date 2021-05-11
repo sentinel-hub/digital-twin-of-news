@@ -1,0 +1,77 @@
+@import '../../variables.scss';
+
+.events-container {
+  width: $eventsContainerWidth;
+  background-color: $fontColorWhite;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  overflow: auto;
+  padding-left: 3px;
+  box-shadow: $boxShadow;
+  z-index: $stackMedium;
+
+  @media (max-width: $xlarge) {
+    height: -webkit-fill-available;
+  }
+
+  @media (max-width: $medium) {
+    width: 100%;
+    min-width: 300px;
+    position: relative;
+    margin-top: $headerHeight;
+
+    @media (max-width: $smaller) {
+      margin-top: $headerHeightSmaller;
+    }
+
+    @media (max-width: $smallest) {
+      margin-top: $headerHeightSmallest;
+    }
+
+    .event-list-item .event-list-item-header .event-date {
+      width: 35%;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .events-error-text {
+    text-align: center;
+    margin-top: 50%;
+    color: $fontColorDark;
+    font-size: 20px;
+  }
+
+  .select-event-status {
+    display: flex;
+    flex-direction: column;
+
+    .event-status-btn {
+      margin-top: 2px;
+
+      &.not-confirmed {
+        margin-top: 5px;
+        border: 5px solid $notConfirmed;
+      }
+
+      &.confirmed-bad {
+        margin-top: 5px;
+        border: 5px solid $confirmedBad;
+      }
+
+      &.probably-bad {
+        margin-top: 5px;
+        border: 5px solid $probablyBad;
+      }
+
+      &.probably-good {
+        margin-top: 5px;
+        border: 5px solid $probablyGood;
+      }
+    }
+  }
+}

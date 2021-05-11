@@ -1,0 +1,75 @@
+@import '../../variables.scss';
+
+.date-picker {
+  display: inline-flex;
+  align-items: baseline;
+  color: $mainBackgroundColor;
+  background: none;
+  padding: 5px 0 5px 20px;
+
+  .duration-label {
+    text-shadow: 0 0 5px #183d4d, 0 0 5px #183d4d;
+  }
+
+  .date-picker-input-wrapper {
+    :hover {
+      cursor: pointer;
+    }
+
+    .date-picker-input-icon {
+      text-align: center;
+      width: 20px;
+    }
+
+    .date-picker-input {
+      font-family: Montserrat-Medium, sans-serif;
+      background: inherit;
+      color: inherit;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 0 5px;
+      text-shadow: 0 0 5px #183d4d, 0 0 5px #183d4d;
+      max-width: 100px;
+    }
+
+    .cal-icon-left,
+    .cal-icon-right {
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+
+    /***  month and year select  ***/ //
+
+    i.fa.cal-icon-left,
+    i.fa.cal-icon-right {
+      color: #fff;
+    }
+
+    i.fa.cal-icon-left,
+    i.fa.cal-icon-right,
+    i.fa.cal-icon-cal {
+      width: 20px;
+    }
+
+    i.fa.cal-icon-left.disabled,
+    i.fa.cal-icon-right.disabled {
+      color: #aaa;
+    }
+  }
+
+  &.open {
+    background: white;
+    color: $mainColor;
+
+    .duration-label {
+      text-shadow: none;
+    }
+
+    .date-picker-input-wrapper .date-picker-input {
+      text-shadow: none;
+    }
+  }
+}

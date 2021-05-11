@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==20.8b1"
+notebook = "*"
+matplotlib = "*"
+pytest = "*"
+responses = "*"
+requests-cache = "*"
+
+[packages]
+requests = "*"
+sentinelhub = "==3.1.0"
+scipy = "*"
+
+[requires]
+python_version = "3.8"

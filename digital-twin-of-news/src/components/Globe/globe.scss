@@ -1,0 +1,109 @@
+@import '../../variables.scss';
+
+.globe {
+  width: calc(100% - #{$eventsContainerWidth});
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-image: $mainGradient;
+  z-index: 0;
+
+  .logos {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @media (min-width: $smaller) {
+      justify-content: center;
+    }
+
+    .logo {
+      flex-basis: 110px;
+
+      @media (min-width: $smaller) {
+        margin: 0 20px;
+      }
+    }
+
+    :nth-child(1) {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (min-width: 1700px) {
+      justify-content: flex-start;
+      margin-left: 24px;
+
+      .logo {
+        width: auto;
+        flex-basis: 0;
+        margin: 0;
+        margin-bottom: 16px;
+
+        :nth-child(1) {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+
+  .esa-logo {
+    height: 20px;
+  }
+
+  .sh-logo {
+    height: 32px;
+  }
+
+  .logo-faded {
+    transition: 0.3s linear opacity;
+    opacity: 0.2;
+  }
+
+  @media (max-width: $xlarge) {
+    position: fixed;
+  }
+
+  .deck-gl-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .globe-loader {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      color: $fontColorWhite;
+      margin-top: -5%;
+
+      @media (max-width: $medium) {
+        height: unset;
+        margin-top: unset;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      }
+    }
+  }
+
+  #deckgl-wrapper {
+    position: relative !important;
+  }
+
+  @media (max-width: $medium) {
+    width: 100%;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  @media (max-width: $xlarge) {
+    height: -webkit-fill-available;
+  }
+}

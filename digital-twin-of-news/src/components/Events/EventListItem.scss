@@ -1,0 +1,117 @@
+@import '../../variables.scss';
+
+.event-list-item-link {
+  text-decoration: none;
+}
+
+.event-list-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  margin-top: 10px;
+
+  &.not-confirmed {
+    border: 5px solid $notConfirmed;
+  }
+
+  &.confirmed-bad {
+    border: 5px solid $confirmedBad;
+  }
+
+  &.probably-bad {
+    border: 5px solid $probablyBad;
+  }
+
+  &.probably-good {
+    border: 5px solid $probablyGood;
+  }
+
+  .event-list-item-header {
+    display: flex;
+    flex-direction: row;
+
+    .event-mark-wrapper {
+      width: 15px;
+      margin-top: 5px;
+
+      .event-mark {
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        min-height: 8px;
+        text-align: center;
+        float: right;
+        margin-right: 5px;
+
+        &.wildfire {
+          background-color: $wildfireColor;
+        }
+
+        &.iceberg {
+          background-color: $icebergColor;
+        }
+
+        &.flood {
+          background-color: $floodColor;
+        }
+
+        &.volcano {
+          background-color: $volcanoColor;
+        }
+
+        &.drought {
+          background-color: $droughtColor;
+        }
+
+        /* stylelint-disable-next-line selector-class-pattern */
+        &.air_pollution {
+          background-color: $airPollutionColor;
+        }
+
+        &.confirmed-good {
+          width: 10px;
+          height: 10px;
+          border: 1px solid white;
+          box-shadow: 0 0 4px #2d323b;
+        }
+      }
+    }
+
+    .event-title {
+      color: $fontColorDark;
+      font-family: Montserrat-Medium, sans-serif;
+      width: 65%;
+      padding-right: 10px;
+    }
+
+    .event-date {
+      color: $fontColor;
+      font-family: Montserrat-Regular, sans-serif;
+      width: 30%;
+      text-align: right;
+      padding-right: 15px;
+      white-space: nowrap;
+    }
+  }
+
+  .event-list-item-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    border-bottom: solid 1px $fontColor;
+    margin: 5px 15px;
+
+    .event-exact-location-name {
+      color: $fontColor;
+      font-family: Montserrat-Regular, sans-serif;
+      padding-bottom: 5px;
+    }
+
+    .event-location-name {
+      color: $fontColor;
+      font-family: Montserrat-Light, sans-serif;
+      padding-bottom: 5px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+image: python:3.8.2
+
+stages:
+  - test
+  - update
+
+linting:
+  stage: test
+  script:
+    - pip install --upgrade black==20.8b1
+    # make sure that the *same* version is used in Pipfiles to avoid incompatibilities:
+    - grep 'black = "==20.8b1"' Pipfile
+    # check the files for correct formatting:
+    - black -l 120 --check . || exit 1
+
+tests:
+  stage: test
+  script:
+    - pip install pipenv
+    - pipenv install --dev
+    - pipenv run pytest -s -v
+
+update_events:
+  stage: update
+  allow_failure: false
+  variables:
+    PYTHONUNBUFFERED: "0"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: on_success
+    - when: never
+  script: 
+    - pip install pipenv
+    - pipenv install
+    - pipenv run python -u main.py

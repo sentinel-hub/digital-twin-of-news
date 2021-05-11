@@ -1,0 +1,51 @@
+@import '../../variables.scss';
+
+.location-map {
+  padding: 10px 15px 0 15px;
+
+  .line-break {
+    border-top: solid 1px $fontColor;
+
+    &.bottom {
+      margin-top: -12.5%;
+    }
+
+    &.top {
+      margin-bottom: -12.5%;
+    }
+  }
+
+  .marker-icon {
+    width: 20px;
+    height: 20px;
+
+    &.wildfire {
+      stroke: $wildfireColor;
+    }
+
+    &.iceberg {
+      stroke: $icebergColor;
+    }
+
+    &.flood {
+      stroke: $floodColor;
+    }
+
+    &.volcano {
+      stroke: $volcanoColor;
+    }
+
+    &.drought {
+      stroke: $droughtColor;
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    &.air_pollution {
+      stroke: $airPollutionColor;
+    }
+  }
+
+  .geography {
+    fill: $mainColorLight;
+  }
+}

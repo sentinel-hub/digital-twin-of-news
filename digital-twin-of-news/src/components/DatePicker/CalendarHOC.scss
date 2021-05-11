@@ -1,0 +1,18 @@
+@import '../../variables.scss';
+
+.calendar-hoc {
+  width: calc(100vw - #{$eventsContainerWidth});
+  height: calc(100vh - #{$headerHeight});
+
+  @media (max-width: $medium) {
+    width: 100vw;
+  }
+
+  @media (max-width: $smaller) {
+    height: calc(100vh - #{$headerHeightSmaller});
+  }
+
+  @media (max-width: $smallest) {
+    height: calc(100vh - #{$headerHeightSmallest});
+  }
+}

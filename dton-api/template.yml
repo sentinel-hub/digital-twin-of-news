@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    dtonapi fastAPI aws lambda deployment
+Resources:
+    dtonapiFastapiLambda:
+        Type: AWS::Serverless::Function
+        Properties:
+            Events:
+                ApiEvent:
+                    Properties:
+                        RestApiId:
+                            Ref: dtonapiFastapiGateway
+                        Path: /{proxy+}
+                        Method: ANY
+                    Type: Api
+            FunctionName: dtonapi-fastapi-lambda
+            CodeUri: ./app/
+            Handler: main.handler
+            Runtime: python3.8
+            Timeout: 300 # timeout of your lambda function
+            MemorySize: 128 # memory size of your lambda function
+            Description: dtonapi fastAPI aws lambda
+            # other options, see ->
+            # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html#sam-specification-template-anatomy-globals-supported-resources-and-properties
+            Role: !Sub arn:aws:iam::${AWS::AccountId}:role/dtonapi-fastapilambdarole
+            Environment:
+                Variables:
+                    DB_HOST: "@@DB_HOST@@"
+                    DB_NAME: "@@DB_NAME@@"
+                    DB_USER: "@@DB_USER@@"
+                    DB_PASS: "@@DB_PASS@@"
+                    SECRET_API_KEY: "@@SECRET_API_KEY@@"
+                    DTON_API_VERSION: "@@DTON_API_VERSION@@"
+                    URL_PREFIX: "/prod"
+            VpcConfig:
+                SubnetIds:
+                    - subnet-56b6e82b
+                    - subnet-bc3419f1
+                    - subnet-10997a7a
+                SecurityGroupIds:
+                    - sg-650cbe0b
+
+    dtonapiFastapiGateway:
+        Type: AWS::Serverless::Api
+        Properties:
+            StageName: prod
+            OpenApiVersion: '3.0.0'
