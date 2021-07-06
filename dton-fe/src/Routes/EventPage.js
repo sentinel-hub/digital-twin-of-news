@@ -416,6 +416,8 @@ function EventPage(props) {
         zoom={event.zoom}
         isFullscreenMap={isFullscreenMap}
         canUseJpeg={canUseJpeg}
+        isWMS={isSelectedLayerWMS}
+        baseUrl={getLayerBaseUrl(selectedLayerId)}
       />
     </div>
   );

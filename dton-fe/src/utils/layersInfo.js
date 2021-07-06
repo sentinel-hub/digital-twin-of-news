@@ -120,4 +120,103 @@ export const layersInfo = {
       },
     ],
   },
+
+  'NO2-VISUALISATION': {
+    text:
+      'This layer shows a 14-day moving average. Using a 14-day average eliminates some effects caused by short-term weather changes and cloud cover, and can be better used to reflect trends. High NO2 levels are often associated with human activities (burning of (fossil) fuels) or wildfires. Longer exposures to elevated concentrations of NO2 may contribute to the development of asthma and potentially increase susceptibility to respiratory infections.',
+    links: [
+      {
+        href: 'https://maps.s5p-pal.com/',
+        description: 'Copernicus Sentinel-5P Mapping Portal',
+      },
+    ],
+  },
+
+  AER_AI_340_380: {
+    text:
+      'The Aerosol Index (AI) is a qualitative index that indicates the presence of elevated layers of aerosols in the atmosphere. It can be used to detect the presence of UV-absorbing aerosols such as desert dust and volcanic ash plumes. High aerosol values have a negative health impact and can cancause amongst others various lung diseases. The AI is calculated for two pairs of wavelengths: 340/380 nm (displayed here) and 354/388 nm.',
+    links: [
+      {
+        href: 'https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-5p/level-2/aerosol-index',
+        description: 'Sentinel-5P Aerosol Index',
+      },
+    ],
+  },
+
+  AER_AI_354_388: {
+    text:
+      'The Aerosol Index (AI) is a qualitative index that indicates the presence of elevated layers of aerosols in the atmosphere. It can be used to detect the presence of UV-absorbing aerosols such as desert dust and volcanic ash plumes. High aerosol values have a negative health impact and can cancause amongst others various lung diseases. The AI is calculated for two pairs of wavelengths: 340/380 nm and 354/388 nm (displayed here).',
+    links: [
+      {
+        href: 'https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-5p/level-2/aerosol-index',
+        description: 'Sentinel-5P Aerosol Index',
+      },
+    ],
+  },
+
+  CH4: {
+    text:
+      'Methane is the most important contributor to the anthropogenic (caused by human activities) enhanced greenhouse effect after carbon dioxide. Measurements are reported in parts per billion (ppb) with a spatial resolution of 7 km x 3.5 km.',
+    links: [
+      {
+        href: 'http://www.tropomi.eu/data-products/methane',
+        description: 'Tropomi CH4',
+      },
+    ],
+  },
+
+  CO: {
+    text:
+      'Carbon monoxide (CO) is an important atmospheric trace gas. It is a major air pollutant in certain urban areas. Major sources of CO are fossil fuel combustion, biomass burning, and atmospheric oxidation of methane and other hydrocarbons. The total column of carbon monoxide is measured in mol per square meter (mol/m^2).',
+    links: [
+      {
+        href: 'http://www.tropomi.eu/data-products/carbon-monoxide',
+        description: 'Tropomi CO',
+      },
+    ],
+  },
+
+  HCHO: {
+    text:
+      'Long-term satellite observations of tropospheric formaldehyde (HCHO) are essential to support air quality and chemistry-climate related studies from regional to global scale. Seasonal and inter-annual variations in the formaldehyde distribution are mainly related to temperature changes and fire events, but also to changes in anthropogenic (human-induced) activities. Since the lifetime of HCHO is on the order of a few hours, HCHO concentrations in the boundary layer can be directly related to the release of short-lived hydrocarbons, most of which cannot be directly observed from space. Measurements are made in mol per square meter (mol/m^2).',
+    links: [
+      {
+        href: 'http://www.tropomi.eu/data-products/formaldehyde',
+        description: 'Tropomi HCHO',
+      },
+    ],
+  },
+
+  NO2: {
+    text:
+      'Nitrogen dioxide (NO2) and nitrogen oxide (NO) together are usually referred to as nitrogen oxides. They are important trace gases in the Earth´s atmosphere, occurring in both the troposphere and the stratosphere. They enter the atmosphere through anthropogenic activities (especially particularly fossil fuel burning and biomass burning) and natural processes (such as microbiological processes in soils, wildfires and lightning). Measurements are made in mol per square metre (mol/m^2).',
+    links: [
+      {
+        href: 'http://www.tropomi.eu/data-products/nitrogen-dioxide',
+        description: 'Tropomi NO2',
+      },
+    ],
+  },
+
+  O3: {
+    text:
+      'Ozone is of vital importance to the balance of the earth´s atmosphere. In the stratosphere, the ozone layer shields the biosphere from dangerous solar ultraviolet radiation. In the troposphere, it acts as an efficient cleaning agent, but at high concentrations it also becomes harmful to the health of humans, animals and vegetation. Ozone is also an important greenhouse-gas that contributes contributor to ongoing climate change. Since the discovery of the Antarctic ozone hole in the 1980s and the subsequent Montreal Protocol, which regulates the production of chlorine-containing ozone-depleting substances, ozone is routinely monitored from the ground and from space. Measurements are made in mol per square metre (mol/m^2)',
+    links: [
+      {
+        href: 'http://www.tropomi.eu/data-products/total-ozone-column',
+        description: 'Tropomi O3',
+      },
+    ],
+  },
+
+  SO2: {
+    text:
+      'Sulphur dioxide enters the Earth´s atmosphere through both natural and anthropogenic (man-made) processes. It plays a role in chemistry on both a local and a global scale and its effects range from short-term pollution to climate impacts. Only about 30% of emitted SO2 comes from natural sources; the majority is of anthropogenic origin. Measurements are made in mol per square metre (mol/m^2).',
+    links: [
+      {
+        href: 'http://www.tropomi.eu/data-products/sulphur-dioxide',
+        description: 'Tropomi SO2',
+      },
+    ],
+  },
 };

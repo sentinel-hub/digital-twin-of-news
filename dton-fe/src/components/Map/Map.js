@@ -4,6 +4,7 @@ import L from 'leaflet';
 
 import CompareLayersComp from './CompareLayersComp';
 import SentinelHubLayerComponent from './plugins/sentinelhubLayer';
+import Legend from '../Legend/Legend';
 
 import 'nprogress/nprogress.css';
 import 'leaflet/dist/leaflet.css';
@@ -149,6 +150,7 @@ function Map({
           <img src={showingLayers ? OSMPreview : visualizationPreview} alt="" />
         </div>
       </div>
+      <Legend layerId={layerId} eventType={selectedEvent.type} />
       <ScaleControl position="bottomright" imperial={false} />
     </MapContainer>
   );

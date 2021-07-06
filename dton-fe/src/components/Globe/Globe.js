@@ -225,21 +225,24 @@ class Globe extends Component {
     /*
       Video needs to be properly prepared before it can be included here. We start by reading original video information:
 
-        $ mediainfo original.mp4
+        $ mediainfo globe_lr.mp4
         Duration                                 : 3s 0ms
         Frame rate                               : 12.333 FPS
 
-      If we need to, we can interpolate original video with additional frames. This command changes 12.333 fps
-      to 49.332 fps (== 12.333 * 4) by interpolating 3 frames in between of each couple of subsequent frames:
+      In order to get a smooth play on low speed we need more frames per second. As we also want a smoother transition between frames we interpolate the original video and add more frames by duplicating existing ones.
+      
+      1. Interpolation: This command changes 12.333 fps to 24.666 fps (== 12.333 * 2) by interpolating 1 frame in between of each couple of subsequent frames:
+        $ ffmpeg  -i globe_lr.mp4 -framerate 12.333 -vf minterpolate=fps=24.666:mi_mode=mci globe_interpolated2.mp4
+ 
+        2. Duplication: This command changes 24.666 fps to 197.328 fps (=== 24.666 *8) by duplicating the previous or next frame 7 times. This is done in order to have a high enough frame rate for a smooth play even with low speed.
+        $ ffmpeg  -i globe_interpolated2.mp4 -framerate 24.666 -vf minterpolate=fps=197.328:mi_mode=blend globe_interpolated2_blend8.mp4
+      
+      Then we convert to a very low framerate, so that the play time is around 3 minutes. Starting with 3s original time, this
+      means that we need to divide frame rate with ~60. The new frame rate is thus 197.328 / 60 = 3.2888 
+      At the same time we get rid of audio, if it was present.
 
-        $ ffmpeg  -i /assets/original.mp4 -framerate 12.333 -vf minterpolate=fps=49.332:mi_mode=mci /assets/globe.interpolated.mp4
-
-      Then we convert to a very low framerate, so that the play time is around 2 minutes. Starting with 3s original time, this
-      means that we need to divide frame rate with ~40. The new frame rate is thus 49.332 / 40 = 1.2333 (or
-      12.333 / 40 = 0.308325 if we didn't interpolate). At the same time we get rid of audio, if it was present.
-
-        $ ffmpeg -y -i globe.interpolated.mp4 -c copy -f h264 globe_noaudio.h264
-        $ ffmpeg -y -r 1.2333 -i globe_noaudio.h264 -c copy globe.mp4
+        $ ffmpeg -y -i globe_interpolated2_blend8.mp4 -c copy -f h264 globe_noaudio_int2_blend8.h264
+        $ ffmpeg -y -r 3.2888 -i globe_noaudio_int2_blend8.h264 -c copy globe.mp4
     */
     const video = document.createElement('video');
     video.style.display = 'none';
@@ -248,7 +251,7 @@ class Globe extends Component {
     video.playsInline = true;
     video.muted = true;
     video.autoplay = true;
-    video.playbackRate = 0.1;
+    video.playbackRate = 1;
     video.play();
     // firefox issue regarding low fps and video texture
     // https://github.com/mozilla/hubs/pull/4210
