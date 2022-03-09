@@ -126,8 +126,8 @@ export const layersInfo = {
       'This layer shows a 14-day moving average. Using a 14-day average eliminates some effects caused by short-term weather changes and cloud cover, and can be better used to reflect trends. High NO2 levels are often associated with human activities (burning of (fossil) fuels) or wildfires. Longer exposures to elevated concentrations of NO2 may contribute to the development of asthma and potentially increase susceptibility to respiratory infections.',
     links: [
       {
-        href: 'https://maps.s5p-pal.com/',
-        description: 'Copernicus Sentinel-5P Mapping Portal',
+        href: 'https://collections.eurodatacube.com/s5p-no2-tropno-daily-check/readme.html',
+        description: 'Sentinel-5P on EDC',
       },
     ],
   },

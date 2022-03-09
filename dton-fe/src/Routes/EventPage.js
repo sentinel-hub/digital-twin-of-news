@@ -70,9 +70,11 @@ function EventPage(props) {
     }
 
     layers.push(...constructWMSLayers(visualizationDates, eventType));
+    layers.push(...(await constructExtraLayers(visualizationDates, eventType)));
 
     // we are a bit picky about layers' sort order - these known layers should be at the top:
     const PREFERRED_SORT_ORDER = [
+      'WATER-DETECTION',
       'NO2-VISUALISATION',
       '3_NDWI',
       'TRUE-COLOR-LAVA-FLOW',
@@ -126,11 +128,20 @@ function EventPage(props) {
       wmsLayers.push(effisLayer);
     }
 
-    if (eventType === EVENT_TYPE.AIR_POLLUTION) {
-      const mundisNO2Layer = createWMSLayer(S5P_TROPOMI_NO2);
-      wmsLayers.push(mundisNO2Layer);
-    }
     return wmsLayers;
+  }
+
+  async function constructExtraLayers(visualizationDates, eventType) {
+    const extraLayers = [];
+
+    if (eventType === EVENT_TYPE.AIR_POLLUTION) {
+      const mundisNO2Layer = await LayersFactory.makeLayer(
+        `https://services.sentinel-hub.com/ogc/wms/${THEMES[event.type].instanceId}`,
+        S5P_TROPOMI_NO2.layerId,
+      );
+      extraLayers.push(mundisNO2Layer);
+    }
+    return extraLayers;
   }
 
   function setMapPosition(position, zoom) {
@@ -254,11 +265,17 @@ function EventPage(props) {
     if (isMundisNO2) {
       const dates = visualizationDates[DATASET_S5PL2.id];
       return {
-        before: [moment.utc(dates.before).startOf('day'), moment.utc(dates.before).endOf('day')],
-        after: [moment.utc(dates.after).startOf('day'), moment.utc(dates.after).endOf('day')],
+        before: [
+          moment.utc(dates.before).subtract(14, 'day').startOf('day'),
+          moment.utc(dates.before).endOf('day'),
+        ],
+        after: [
+          moment.utc(dates.after).subtract(14, 'day').startOf('day'),
+          moment.utc(dates.after).endOf('day'),
+        ],
         isMultitemporal: false,
         isSingleDate: false,
-        onlySupportsToTime: true,
+        onlySupportsToTime: false,
       };
     }
 

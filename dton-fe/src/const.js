@@ -130,10 +130,7 @@ export const EFFIS_VIIRS_FIRES = {
 };
 
 export const S5P_TROPOMI_NO2 = {
-  id: 'S5P_TROPOMI_NO2',
-  baseUrl: 'https://shservices.mundiwebservices.com/ogc/wms/0635c213-17a1-48ee-aef7-9d1731695a54',
   layerId: 'NO2-VISUALISATION',
-  title: 'NO2 (14 day average)',
 };
 
 export const LAYERS_PNG_ONLY = {
